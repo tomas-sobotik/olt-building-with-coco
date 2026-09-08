@@ -1,0 +1,14 @@
+definition_version: 2
+entities:
+  coco_cost_overview:
+    type: streamlit
+    identifier:
+      name: COCO_COST_OVERVIEW
+      database: COCO_COURSE
+      schema: PUBLIC
+    query_warehouse: COMPUTE_WH
+    runtime_name: SYSTEM$ST_CONTAINER_RUNTIME_PY3_11
+    compute_pool: SYSTEM_COMPUTE_POOL_CPU
+    main_file: streamlit_app.py
+    artifacts:
+      - streamlit_app.py
