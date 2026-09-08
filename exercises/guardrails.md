@@ -36,6 +36,8 @@ The hook should ask: "Does this SQL statement modify data or structure in the BR
 Save the hook configuration under .cortex/settings.json so it's committed with the repo and applies to anyone who clones it.
 ```
 
+You need to restart a CoCo session to get the hook loaded. Run `/restart` and then you can run `/hooks` to confirm the PreToolUse hook is listed and enabled.
+
 Here is also `.cortex/settings.json` file for a reference. You can create it also manually:
 
 ```

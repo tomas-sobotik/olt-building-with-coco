@@ -35,3 +35,13 @@ Fallback strategy:
 First verify if all the views have any data. If there is nothing or amount of data is very limited, generated dummy data for last month and use those instead.
 
 ```
+
+Another task related to cost control is assigning credit limits per user. We can do it by following ALTER statements:
+```
+----setting the limit to protect trial credits
+ALTER ACCOUNT SET CORTEX_CODE_SNOWSIGHT_DAILY_EST_CREDIT_LIMIT_PER_USER = 10;
+
+--setting the limit to protect trial credits
+ALTER ACCOUNT SET CORTEX_CODE_CLI_DAILY_EST_CREDIT_LIMIT_PER_USER = 10;
+
+```
