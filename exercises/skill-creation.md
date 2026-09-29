@@ -33,7 +33,7 @@ Conventions it must always apply:
 - uppercase status columns; 
 - add table and column comments. 
 
-It should inspect the source first, show the DDL for approval before executing, then validate row-count parity and surrogate-key uniqueness. Put it under temp/skills/ for validation. I will move it to correct location after validation.
+It should inspect the source first, show the DDL for approval before executing, then validate row-count parity and surrogate-key uniqueness. 
 
 ### How to check installed skills
 `/skill` 
