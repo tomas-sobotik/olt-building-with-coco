@@ -2,12 +2,14 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "sql.*",
+        "matcher": "sql_execute",
         "hooks": [
           {
-            "type": "prompt",
-            "prompt": "Does this SQL statement modify data or structure in the BRONZE schema? BRONZE is immutable raw data — it must never be modified. If yes, block it and explain why.",
-            "enabled": true
+            "type": "command",
+            "command": "bash .cortex/hooks/block-bronze-writes.sh",
+            "timeout": 10,
+            "enabled": true,
+            "statusMessage": "Checking BRONZE protection policy..."
           }
         ]
       }

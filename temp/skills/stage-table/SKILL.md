@@ -69,8 +69,8 @@ Entity name for the surrogate key is the singular noun:
 
 Build a `CREATE OR REPLACE DYNAMIC TABLE` statement with:
 - Target: `COCO_COURSE.SILVER.<SILVER_TABLE_NAME>`
-- `TARGET_LAG = '1 hour'` (sensible default; mention user can adjust)
-- `WAREHOUSE = COCO_COURSE_WH`
+- `TARGET_LAG = '1 hour'`
+- `WAREHOUSE = COCO_WH`
 - Column transformations per conventions above
 - Table comment summarizing lineage
 
@@ -78,7 +78,7 @@ Build a `CREATE OR REPLACE DYNAMIC TABLE` statement with:
 ```sql
 CREATE OR REPLACE DYNAMIC TABLE COCO_COURSE.SILVER.<SILVER_TABLE_NAME>
   TARGET_LAG = '1 hour'
-  WAREHOUSE = COCO_COURSE_WH
+  WAREHOUSE = COCO_WH
   COMMENT = 'Silver layer: cleaned and typed <entity> data sourced from COCO_COURSE.BRONZE.<TABLE_NAME>'
 AS
 SELECT

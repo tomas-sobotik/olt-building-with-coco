@@ -31,9 +31,22 @@ Add a new column called temp_id to BRONZE_ORDERS
 Let's use a coco to create it for us. Here is a prompt:
 
 ```
-Create a PreToolUse hook for this project. Matcher: sql*. Type: prompt.
-The hook should ask: "Does this SQL statement modify data or structure in the BRONZE schema? BRONZE is immutable raw data — it must never be modified. If yes, block it and explain why."
-Save the hook configuration under .cortex/settings.json so it's committed with the repo and applies to anyone who clones it.
+Create a hook that protects the BRONZE schema from modifications while still allowing reads.
+
+  I need a PreToolUse hook that blocks any SQL statement that would modify data or structure in the BRONZE schema (things like
+  ALTER, DROP, INSERT, UPDATE, DELETE, MERGE, CREATE, or TRUNCATE), but still allows SELECT queries to read from BRONZE tables.
+
+  The hook should:
+
+  • Be a command hook (not a prompt hook — command hooks enforce at the system level and can't be overridden)
+  • Use a shell script that reads the SQL from the tool input, checks if it's both a modification statement and targets BRONZE,
+   and blocks it if so
+  • Block by exiting with code 2 and writing the reason to stderr
+  • Allow everything else by exiting with code 0
+  • Only fire on the sql_execute tool
+
+  Put the shell script in .cortex/hooks/ and register the hook in .cortex/settings.json under the hooks key.
+
 ```
 
 You need to restart a CoCo session to get the hook loaded. Run `/restart` and then you can run `/hooks` to confirm the PreToolUse hook is listed and enabled.
